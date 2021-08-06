@@ -1,0 +1,902 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>vue</title>
+                <meta name="robots" content="noindex" />
+                
+
+        <!-- Custom HTML head -->
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+                <link rel="icon" href="favicon.svg">
+                        <link rel="shortcut icon" href="favicon.png">
+                <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+                <link rel="stylesheet" href="css/print.css" media="print">
+        
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+                <link rel="stylesheet" href="fonts/fonts.css">
+        
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+            </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1.es6介绍.html"><strong aria-hidden="true">1.</strong> es6介绍</a></li><li class="chapter-item expanded "><a href="2封装ajax.html"><strong aria-hidden="true">2.</strong> 封装ajax</a></li><li class="chapter-item expanded "><a href="3.js类.html"><strong aria-hidden="true">3.</strong> js类</a></li><li class="chapter-item expanded "><a href="4.vue基础.html"><strong aria-hidden="true">4.</strong> vue基础.md</a></li></ol>            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                                                <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                                            </div>
+
+                    <h1 class="menu-title">vue</h1>
+
+                    <div class="right-buttons">
+                                                <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                                                                        
+                    </div>
+                </div>
+
+                                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p>[TOC]</p>
+<h3 id="今日内容"><a class="header" href="#今日内容">今日内容</a></h3>
+<h4 id="es6的语法"><a class="header" href="#es6的语法">es6的语法</a></h4>
+<h5 id="let"><a class="header" href="#let">let</a></h5>
+<pre><code class="language-js">特点：
+1.局部作用域
+2.不会存在变量提升
+3.变量不能重复声明
+</code></pre>
+<h5 id="const"><a class="header" href="#const">const</a></h5>
+<pre><code class="language-js">特点：	
+1.局部作用域 
+2.不会存在变量提升 
+3.不能重复声明，只声明常量 不可变的量
+</code></pre>
+<h5 id="模板字符串"><a class="header" href="#模板字符串">模板字符串</a></h5>
+<pre><code class="language-js">tab键上面的反引号 ${变量名}来插值
+let name = '未来';
+let str = `我是${name}`
+</code></pre>
+<table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td></td><td></td></tr>
+<tr><td></td><td></td></tr>
+<tr><td></td><td></td></tr>
+</tbody></table>
+<h5 id="箭头函数"><a class="header" href="#箭头函数">箭头函数</a></h5>
+<p>function(){} ===  ()=&gt;{} this的指向发生了改变</p>
+<h5 id="es6的类"><a class="header" href="#es6的类">es6的类</a></h5>
+<p>原型 prototype  当前类的父类（继承性）</p>
+<pre><code class="language-javascript">	class Person{
+		constructor(name){
+			this.name = name;
+		}
+		fav(){
+		}			
+	}
+	Vue的基本用法
+</code></pre>
+<h4 id="es6的let和const代码示例"><a class="header" href="#es6的let和const代码示例">es6的let和const代码示例</a></h4>
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot;
+          content=&quot;width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;!--1.let和const--&gt;
+&lt;script&gt;
+
+    //            var a;
+//    console.log(a);
+//    {
+//
+//        var a = 1;
+//        var a = 10
+//
+//    }
+//    console.log(a);
+
+    /*
+    var a = [];
+    for (let i = 0; i &lt; 10; i++) {
+        a[i] = function () {
+            console.log(i);
+        };
+    }
+    a[2](); // 10
+    */
+    //    console.log(a);
+    //    {
+    //a 是1.局部作用域，2.不会存在变量提升 3.变量不能重复声明
+    //        let a = 3;
+    //        let a = 5;
+    //        console.log(a);
+    //    }
+    //    console.log(a);
+
+//    const 局部作用域 不会存在变量提升 不能重复声明，只声明常量 不可变的量
+//    console.log(a);
+    {
+        const a = 5;
+        a = 10;
+//        const a = 10;
+    }
+//    console.log(a);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h4 id="es6的箭头函数-"><a class="header" href="#es6的箭头函数-">es6的箭头函数 ()=&gt;{}</a></h4>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;zh-CN&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Title&lt;/title&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;script&gt;
+    /*
+    function add(x){
+        return x
+    }
+    add(5);
+    */
+//    let add = function (x) {
+//        return x;
+//    }
+//    add(10);
+
+//    let add2 = (x)=&gt;{
+//        return x
+//    }
+//    let add2 = x =&gt; x;
+//    console.log(add2(30));
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h4 id="es6的对象"><a class="header" href="#es6的对象">es6的对象</a></h4>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;zh-CN&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Title&lt;/title&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;script&gt;
+    let person = {
+        name: &quot;日天&quot;,
+        age: 30,
+        fav: function () {
+            console.log(this); //this指向 当前的对象
+            console.log(this.name);
+        }
+    }
+
+    /*
+     let person2 = {
+        name: &quot;日天2&quot;,
+        age: 30,
+        fav:  () =&gt; {
+            console.log(this); //this指向 发生了改变。this指向 定义person2的父级对象(上下文)
+            console.log(this.name);
+        }
+    }
+
+    person2.fav()
+    */
+//    对象的单体模式
+        let person3 = {
+            name:'日天',
+            fav(){
+                console.log(this);
+            }
+//            fav:function () {
+//
+//            }
+        }
+        person3.fav();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h4 id="es6的类-1"><a class="header" href="#es6的类-1">es6的类</a></h4>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;zh-CN&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Title&lt;/title&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;script&gt;
+
+    /*
+    function Vue(name,age) {
+        this.name = name;
+        this.age = age;
+    }
+//    基于原型给对象声明方法
+    Vue.prototype.showName = function () {
+        console.log(this.name);
+    }
+
+    var p1 = new Person('alex','29');
+    */
+
+    class Person{
+        constructor(name='alex',age=18){
+            this.name = name;
+            this.age = age;
+        }
+        showname(){
+            console.log(this.name);
+        }
+        showage(){
+
+        }
+    }
+
+    let V = new Person();
+    V.showname();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><pre><code class="language-javascript">/**
+ * Created by ljz on 2018/5/15.
+ */
+function getFormatDate(){
+    var nowDate = new Date();
+    var year = nowDate.getFullYear();
+    var month = nowDate.getMonth() + 1 &lt; 10 ? &quot;0&quot; + (nowDate.getMonth() + 1) : nowDate.getMonth() + 1;
+    var date = nowDate.getDate() &lt; 10 ? &quot;0&quot; + nowDate.getDate() : nowDate.getDate();
+    var hour = nowDate.getHours()&lt; 10 ? &quot;0&quot; + nowDate.getHours() : nowDate.getHours();
+    var minute = nowDate.getMinutes()&lt; 10 ? &quot;0&quot; + nowDate.getMinutes() : nowDate.getMinutes();
+    var second = nowDate.getSeconds()&lt; 10 ? &quot;0&quot; + nowDate.getSeconds() : nowDate.getSeconds();
+    return year + &quot;-&quot; + month + &quot;-&quot; + date+&quot; &quot;+hour+&quot;:&quot;+minute+&quot;:&quot;+second;
+}
+
+function getCookie(name) {
+  var cookieValue = null;
+  if (document.cookie &amp;&amp; document.cookie !== '') {
+    var cookies = document.cookie.split(';');
+    for (var i = 0; i &lt; cookies.length; i++) {
+      var cookie = jQuery.trim(cookies[i]);
+      // Does this cookie string begin with the name we want?
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
+var myajax = {
+  'get': function (args) {
+    args['method'] = 'get';
+    args['tyep'] = 'GET';
+    this.ajax(args);
+  },
+  'post': function (args) {
+    args['method'] = 'post';
+    args['tyep'] = 'POST';
+    this._ajaxSetup();
+    this.ajax(args);
+  },
+  'ajax': function (args) {
+    $.ajax(args);
+  },
+  'delete': function (args) {
+    args['method'] = 'delete';
+    args['tyep'] = 'DELETE';
+    this._ajaxSetup();
+    this.ajax(args);
+  },
+  'put': function (args) {
+    args['method'] = 'put';
+    args['tyep'] = 'PUT';
+    this._ajaxSetup();
+    this.ajax(args);
+  },
+  '_ajaxSetup': function () {
+    $.ajaxSetup({
+      beforeSend: function (xhr, settings) {
+        if (!/^(GET|HEAD|OPTIONS|TRACE)$/.test(settings.type) &amp;&amp; !this.crossDomain) {
+          xhr.setRequestHeader(&quot;X-CSRFToken&quot;, getCookie('csrftoken'));
+        }
+      }
+    });
+  }
+};
+
+
+function get_json_parse_res(data) {
+  var x = data
+  var res = data
+  try {
+      /*
+  res = $.formatJSON(res, &quot;    &quot;, true)
+  res = formatJson_v2(res, &quot; &quot;)
+  */
+    res = JSON.stringify(JSON.parse(x), null, 2)
+  }
+    // 无论如何都展示
+  catch (err) {
+  }
+  return res
+}
+
+// // 使用
+// $(function () {
+//   myajax.post({
+//     url: &quot;&quot;,
+//     data: {},
+//     success: function () {
+//
+//     },
+//     fail: function () {
+//
+//     },
+//   })
+// })
+
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><pre><code class="language-JavaScript">function SLM() {
+  var self = this;
+
+  self.run()
+}
+
+SLM.prototype.run = function () {
+  console.log(&quot;run&quot;)
+
+}
+
+SLM.prototype.trStr = function (id, idc_env, create_date) {
+  return '                      &lt;tr&gt;\n' +
+    '                        &lt;td class=&quot;dtr-control task_id&quot;&gt;' + id + '&lt;/td&gt;\n' +
+    '                        &lt;td class=&quot;now_node&quot;&gt;' + idc_env + '&lt;/td&gt;\n' +
+    '                        &lt;td class=&quot;now_node&quot;&gt;' + getFormatDate() + '&lt;/td&gt;\n' +
+    '                        &lt;td class=&quot;now_node&quot;&gt;PENDING&lt;/td&gt;\n' +
+    '                        &lt;td class=&quot;process_node_data&quot;  style=&quot;text-align: center&quot;&gt;&lt;button class=&quot;btn btn-warning&quot; &gt;查看&lt;/button&gt;&lt;/td&gt;\n' +
+    '                      &lt;/tr&gt;'
+
+}
+
+SLM.prototype.post = function (t) {
+  var self = this
+  console.log($(t).attr(&quot;id&quot;))
+  data = {
+    &quot;idc_env&quot;: $(t).attr(&quot;id&quot;)
+  }
+  //清除上一条消息
+  // $(&quot;.cus_msg&quot;).css(&quot;display&quot;, &quot;none&quot;)
+  $(&quot;.handler_div button&quot;).attr(&quot;disabled&quot;, &quot;disabled&quot;)
+  window.messageBox.show(&quot;清理请求已下发；请稍等...&quot;)
+
+  myajax.post({
+    'url': storm_log_clean_url,
+    'data': data,
+    'success': function (ret) {
+      console.log(ret)
+      if (ret.status) {
+        window.messageBox.show(&quot;任务下发成功:\n&quot; + JSON.stringify(ret, null, 2))
+        $(&quot;#log_clean tbody&quot;).prepend(self.trStr(ret.message.ret, data[&quot;idc_env&quot;]))
+        $(&quot;.handler_div button&quot;).removeAttr(&quot;disabled&quot;)
+        self.bindEveSingle()
+      } else {
+        window.messageBox.showError(&quot;任务下发失败:\n&quot; + JSON.stringify(ret, null, 2))
+        $(&quot;.handler_div button&quot;).removeAttr(&quot;disabled&quot;)
+      }
+
+    },
+    'fail': function (error) {
+      console.log(error);
+      window.messageBox.showError(&quot;任务下发异常:\n&quot; +get_json_parse_res(error))
+      $(&quot;.handler_div button&quot;).removeAttr(&quot;disabled&quot;)
+    }
+  });
+
+}
+
+SLM.prototype.bindEveSingle = function () {
+  $(&quot;tbody  .process_node_data .btn&quot;).click(function (e) {
+    e.preventDefault();
+  })
+  $($(&quot;tbody  .process_node_data&quot;)[0]).click(function () {
+    var self = this
+    let task_id = $(this).parent().children(&quot;.task_id&quot;).text()
+    console.log(task_id)
+    $(&quot;#modal-body_data&quot;).text(&quot;&quot;)
+    myajax.post({
+      'url': storm_log_clean_url_id_ret,
+      'data': {&quot;task_id&quot;: task_id},
+      'success': function (ret) {
+        console.log(ret)
+        if (ret.status) {
+          try {
+            r = JSON.stringify(ret, null, 2)
+          } catch (err) {
+            r = ret
+            console.log(err)
+          }
+          $(&quot;#modal-body_data&quot;).text(r)
+          $(&quot;#modleHandler&quot;).click()
+          console.log($(self).prev()[0])
+          $(self).prev().text(ret.message.ret.state)
+        } else {
+          window.messageBox.showError(JSON.stringify(ret, null, 2))
+        }
+      },
+      'fail': function (error) {
+        console.log(error);
+        window.messageBox.showError(get_json_parse_res(error))
+      }
+    });
+    $(this).children().removeClass(&quot;btn-warning&quot;)
+    $(this).children().addClass(&quot;btn-danger&quot;)
+  })
+
+}
+
+SLM.prototype.bindEve = function () {
+  $(&quot;tbody  .process_node_data .btn&quot;).click(function (e) {
+    e.preventDefault();
+  })
+  $(&quot;tbody  .process_node_data&quot;).click(function () {
+    var self = this
+    let task_id = $(this).parent().children(&quot;.task_id&quot;).text()
+    console.log(task_id)
+    $(&quot;#modal-body_data&quot;).text(&quot;&quot;)
+    myajax.post({
+      'url': storm_log_clean_url_id_ret,
+      'data': {&quot;task_id&quot;: task_id},
+      'success': function (ret) {
+        console.log(ret)
+        if (ret.status) {
+          try {
+            r = JSON.stringify(ret, null, 2)
+          } catch (err) {
+            r = ret
+            console.log(err)
+          }
+          $(&quot;#modal-body_data&quot;).text(r)
+          $(&quot;#modleHandler&quot;).click()
+          console.log($(self).prev()[0])
+          console.log(ret.message.ret.state)
+          $(self).prev().text(ret.message.ret.state)
+        } else {
+          window.messageBox.showError(JSON.stringify(ret))
+        }
+      },
+      'fail': function (error) {
+        console.log(error);
+        window.messageBox.showError(get_json_parse_res(error))
+      }
+    });
+    $(this).children().removeClass(&quot;btn-warning&quot;)
+    $(this).children().addClass(&quot;btn-danger&quot;)
+  })
+
+}
+
+SLM.prototype.listenSubmitClick = function () {
+  var self = this
+  $(&quot;#sd01_dev&quot;).click(function () {
+    self.post(this)
+  })
+  $(&quot;#jh01_prod&quot;).click(function () {
+    self.post(this)
+  })
+  $(&quot;#jh02_prod&quot;).click(function () {
+    self.post(this)
+  })
+  $(&quot;#sd01_prod&quot;).click(function () {
+    self.post(this)
+  })
+  self.bindEve()
+  $(&quot;#lastTaskSend&quot;).click(function () {
+    console.log(123123)
+    $(&quot;.cus_msg&quot;).css(&quot;display&quot;, &quot;block&quot;)
+  })
+
+}
+
+$(function () {
+  var slm = new SLM();
+  slm.listenSubmitClick();
+});
+
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h4 id="vue的介绍"><a class="header" href="#vue的介绍">vue的介绍</a></h4>
+<p>前端有三大框架：   可以去github查看三个框架的 star星</p>
+<table><thead><tr><th>框架</th><th>介绍</th></tr></thead><tbody>
+<tr><td>vue</td><td>尤雨溪,渐进式的JavaScript框架</td></tr>
+<tr><td>react</td><td>Facebook公司，里面的高阶函数非常多，对初学者不用好</td></tr>
+<tr><td>angular</td><td>谷歌公司，目前更新到6.0，学习angular得需要玩一下typescript</td></tr>
+<tr><td>Vue</td><td>angular2.0 3.0~6.0   React(高阶函数 es6)初学者不友好</td></tr>
+</tbody></table>
+<h5 id="vue的基本引入和创建"><a class="header" href="#vue的基本引入和创建">vue的基本引入和创建</a></h5>
+<ul>
+<li>
+<p>1.下载</p>
+<p>cdn方式下载</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+</li>
+<li>
+<p>2.引包</p>
+</li>
+</ul>
+<pre><code class="language-html">&lt;script src='./vue.js'&gt;&lt;/script&gt;
+</code></pre>
+<ul>
+<li>
+<p>3.实例化</p>
+<pre><code class="language-js">//2.实例化对象
+new Vue({
+    el:'#app', //绑定那块地
+    data:{
+        //数据属性  种子
+        msg:'黄瓜',
+        person:{
+            name:'wusir'
+        },
+        msg2:'hello Vue'
+    }
+});
+</code></pre>
+</li>
+</ul>
+<h5 id="vue的模板语法"><a class="header" href="#vue的模板语法">Vue的模板语法</a></h5>
+<p>可以插入任何你想插入的内容，除了if-else if-else用三元运算符代替</p>
+<pre><code class="language-html">&lt;!--模板语法--&gt;
+&lt;h2&gt;{{ msg }}&lt;/h2&gt;
+&lt;h3&gt;{{ 'hhahda' }}&lt;/h3&gt;
+&lt;h3&gt;{{ 1+1 }}&lt;/h3&gt;
+&lt;h4&gt;{{ {'name':'alex'} }}&lt;/h4&gt;
+&lt;h5&gt;{{ person.name }}&lt;/h5&gt;
+&lt;h2&gt;{{ 1&gt;2? '真的': '假的' }}&lt;/h2&gt;
+&lt;p&gt;{{ msg2.split('').reverse().join('') }}&lt;/p&gt;
+</code></pre>
+<h5 id="vue的指令系统之v-text和v-html"><a class="header" href="#vue的指令系统之v-text和v-html">Vue的指令系统之v-text和v-html**</a></h5>
+<pre><code class="language-js">v-text相当于innerText
+v-html相当于innerHTML
+</code></pre>
+<h5 id="vue的指令系统之v-if和v-show"><a class="header" href="#vue的指令系统之v-if和v-show">Vue的指令系统之v-if和v-show</a></h5>
+<pre><code class="language-js">v-show 相当于 style.display
+</code></pre>
+<p>v-if和v-show的区别</p>
+<p>记住：</p>
+<pre><code class="language-js">v-if vs v-show
+v-if 是“真正”的条件渲染，因为它会确保在切换过程中条件块内的事件监听器和子组件适当地被销毁和重建。
+
+v-if 也是惰性的：如果在初始渲染时条件为假，则什么也不做——直到条件第一次变为真时，才会开始渲染条件块。
+
+相比之下，v-show 就简单得多——不管初始条件是什么，元素总是会被渲染，并且只是简单地基于 CSS 进行切换。
+
+一般来说，v-if 有更高的切换开销，而 v-show 有更高的初始渲染开销。因此，如果需要非常频繁地切换，则使用 v-show 较好；如果在运行时条件很少改变，则使用 v-if 较好。
+</code></pre>
+<h5 id="v-bind-和v-on"><a class="header" href="#v-bind-和v-on">v-bind 和v-on</a></h5>
+<pre><code class="language-js">v-bind可以绑定标签中任何属性  
+v-on 可以监听 js中所有事件
+
+简写：
+v-bind:src  等价于   :src
+v-on:click 等价于 @click
+</code></pre>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;zh-CN&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Title&lt;/title&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+    &lt;style&gt;
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+        .active{
+            background-color: green;
+        }
+
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id=&quot;app&quot;&gt;
+    &lt;!--&lt;button v-on:click = 'handlerChange'&gt;切换颜色&lt;/button&gt;--&gt;
+   &lt;!--v-bind 标签中所有的属性 img标签src alt,a标签的href title id class--&gt;
+    &lt;!--&lt;img v-bind:src=&quot;imgSrc&quot; v-bind:alt=&quot;msg&quot;&gt;--&gt;
+    &lt;!--&lt;div class=&quot;box&quot; v-bind:class = '{active:isActive}'&gt;&lt;/div&gt;--&gt;
+
+     &lt;button @mouseenter = 'handlerChange' @mouseleave = 'handlerLeave'&gt;切换颜色&lt;/button&gt;
+   &lt;!--v-bind 标签中所有的属性 img标签src alt,a标签的href title id class--&gt;
+    &lt;img :src=&quot;imgSrc&quot; :alt=&quot;msg&quot;&gt;
+    &lt;div class=&quot;box&quot; :class = '{active:isActive}'&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;!--1.引包--&gt;
+&lt;script src='./vue.js'&gt;&lt;/script&gt;
+&lt;script&gt;
+    //数据驱动视图  设计模式 MVVM  Model  View  ViewModel
+
+    //声明式的JavaScript框架
+
+//    v-bind和v-on的简便写法 :  @
+    new Vue({
+        el: '#app',
+        data() {
+            //data中是一个函数 函数中return一个对象，可以是空对象 但不能不return
+            return {
+                imgSrc:'./1.jpg',
+                msg:'美女',
+                isActive:true
+            }
+        },
+        methods:{
+            handlerChange(){
+//                this.isActive = !this.isActive;
+                this.isActive = false;
+            },
+            handlerLeave(){
+                this.isActive = true;
+            }
+        }
+       
+    })
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h5 id="v-for-遍历列表"><a class="header" href="#v-for-遍历列表">v-for 遍历列表</a></h5>
+<pre><code class="language-javascript">v-for可以遍历列表，也可以遍历对象
+在使用vue的v-for指令的时候，一定要绑定key,避免vue帮咱们计算DOM
+</code></pre>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;zh-CN&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Title&lt;/title&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+    &lt;style&gt;
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+
+        .active {
+            background-color: green;
+        }
+
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id=&quot;app&quot;&gt;
+    &lt;ul v-if=&quot;data.status === 'ok'&quot;&gt;
+        &lt;!--v-for的优先级是最高的     diff算法--&gt;
+        &lt;li v-for = '(item,index) in data.users' :key=&quot;item.id&quot; &gt;
+            &lt;h3&gt;{{ item.id }} -- {{ item.name }} -- {{ item.age }}&lt;/h3&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;div v-for = '(value,key) in person'&gt;
+        {{ key }}-----{{ value }}
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;!--1.引包--&gt;
+&lt;script src='./vue.js'&gt;&lt;/script&gt;
+&lt;script&gt;
+
+    new Vue({
+        el: '#app',
+        data() {
+
+            return {
+                data: {
+                    status: 'ok',
+                    users: [
+                        {id: 1, name: 'alex', age: 18},
+                        {id: 2, name: 'wusir', age: 30},
+                        {id: 3, name: 'yuan', age: 48}
+                    ]
+                },
+                person:{
+                    name:'alex'
+                }
+            }
+        },
+        methods: {}
+
+    })
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img src="assets/1543207470515.png" alt="1543207470515" /></p>
+<p><img src="assets/1543207611144.png" alt="1543207611144" /></p>
+<h5 id="mvvm设计模式"><a class="header" href="#mvvm设计模式">MVVM设计模式</a></h5>
+<p><img src="assets/1543207590941.png" alt="1543207590941" /></p>
+<h5 id="数据驱动逻辑流程"><a class="header" href="#数据驱动逻辑流程">数据驱动逻辑流程</a></h5>
+<p><img src="assets/1543207580828.png" alt="1543207580828" /></p>
+<h5 id="typora中markdown图片相对路径设置"><a class="header" href="#typora中markdown图片相对路径设置">Typora中markdown图片相对路径设置</a></h5>
+<pre><code>文件-》偏好设置-&gt;![1543207708274](assets/1543207708274.png)</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                        
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                            </nav>
+
+        </div>
+
+                <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+        
+        
+                <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+        
+                <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+                        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+                
+    </body>
+</html>

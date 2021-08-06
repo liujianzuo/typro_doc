@@ -1,1 +1,0 @@
-# typro_doc
